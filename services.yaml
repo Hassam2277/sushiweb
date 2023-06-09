@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sushiweb-service
+spec:
+  selector:
+    app: sushiweb
+  ports:
+    - protocol: TCP
+      port: 8085
+      targetPort: 8080
+  type: NodePort

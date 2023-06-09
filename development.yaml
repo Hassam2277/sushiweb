@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sushiweb
+  labels:
+    app: sushiweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sushiweb
+  template:
+    metadata:
+      labels:
+        app: sushiweb
+    spec:
+      containers:
+        - name: sushiweb-app
+          image: hassam2277/sushiweb:latest
+          ports:
+            - containerPort: 8080
+
+  #    containers:
+  #      - name: sushiwebapp
+  #      image: hassam2277/sushiweb:latest
+  #        ports:
+  #          -  containerPort: 8080

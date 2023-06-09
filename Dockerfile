@@ -1,6 +1,17 @@
-FROM registry.access.redhat.com/ubi8/httpd-24:1-209
+# Start with a base image
+FROM node:latest
 
-COPY website/ /var/www/html
+# Set the working directory
+WORKDIR /app
 
-RUN ARCH=$(uname -m) \
-	&& sed s/_ARCHITECTURE_/$ARCH/ /var/www/html/index_template.html > /var/www/html/index.html
+# Copy the package.json and package-lock.json files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the project files
+COPY . .
+
+# Specify the command to run when the container starts
+CMD [ "npm", "start" ]
